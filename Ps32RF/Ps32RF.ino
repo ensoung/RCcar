@@ -22,9 +22,9 @@ void setup()
 uint32_t cur_bk;
 void loop()
 {
-  if(millis()-cur_bk>100){
+  if(millis()-cur_bk>100){  // every 100 seconds run the code below
     if(Ps3.isConnected()){
-      getPS3data(); 
+      getPS3data();   //get the ps3 controller data and put it into the buffer
       uint8_t chkSum=0;
       for(int i=0; i<FRAME_DATA_SIZE; i++){ // take all of the objects currently in the buffer and add them all to make a checksum 
         chkSum+=pad.buf[2+i];
@@ -32,7 +32,7 @@ void loop()
       pad.data.chk_sum=chkSum; // make the checksum being transmitted the same as the one found aboce
       #ifdef DEBUG2
         Serial.print("["); 
-        for(int i=0; i<FRAME_DATA_SIZE+3; i++){
+        for(int i=0; i<FRAME_DATA_SIZE+3; i++){ //if DEBUG2 has been declared then print out everything in the gamepad buffer
           Serial.print("0x"); 
           Serial.print(pad.buf[i], HEX); 
           Serial.print(", ");
@@ -42,7 +42,7 @@ void loop()
     }else{
       memncpy(defPadBuf, pad.buf, FRAME_DATA_SIZE+3); // if the ps3 controller isn't connected use a default so that dpad  isn't set to zero (range is from 1-100) 
     }
-    RF.write(pad.buf, FRAME_DATA_SIZE+3);
+    RF.write(pad.buf, FRAME_DATA_SIZE+3); //swrite everything into the RF including the buffer and the frame start as well as the checksum
     cur_bk=millis();    
   }
 }
@@ -56,7 +56,7 @@ void getPS3data(){
       }else{
         pad.data.lx=map(Ps3.data.analog.stick.lx, -128, -25, 1,100);
       }
-#ifdef DEBUG1
+#ifdef DEBUG1 //this entire lower section is meant for debugging
       Serial.print("lx="); Serial.println(Ps3.data.analog.stick.lx, DEC);
 #endif
     }else

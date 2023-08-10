@@ -31,7 +31,7 @@ static uint8_t frm_num;
 void setup() {
   Serial.begin(115200);
   RF.begin(9600, SERIAL_8N1, RF_RX, RF_TX);
-  esc_servo.attach(SERVO_PIN, ESC_PIN);
+  esc_servo.attach(SERVO_PIN, ESC_PIN); //attach the servo to the needed pins
 
   delay(3000);
 }
@@ -53,7 +53,7 @@ void loop() {
   
   // RF-receicver
   if (RF.available() > 0){
-    frm_buf_len += RF.readBytes(&buf_rf[frm_buf_len],RF.available());
+    frm_buf_len += RF.readBytes(&buf_rf[frm_buf_len],RF.available()); //if the RF is available is open then take the things from the 
     /*for(int i=0; i<frm_buf_len; i++){
       Serial.print(buf_rf[i],HEX);
       Serial.print(",");
@@ -101,7 +101,7 @@ void loop() {
 
   // RF module을 통해 수신된 frame처리.
   if(b_rcvFrm){
-#ifdef MY_DEBUG
+#ifdef MY_DEBUG //made for debugging if MY_DEBUG IS defined then go into the the debugging
     Serial.printf("[%d, %d-%d] %d-%d, %d, spd:%d\n",
         gamepadData.data.lx, gamepadData.data.rx,gamepadData.data.ry, gamepadData.data.l_trigger,
         gamepadData.data.r_trigger,  gamepadData.data.btns.var, esc_servo.GetCurSpeed());//encoder.rpm );
