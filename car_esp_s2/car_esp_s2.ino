@@ -122,7 +122,7 @@ void loop() {
 
     // Left-Right 0~199. 0:Left, 199:Right, 100:Center
     esc_servo.SetServoMicros(uint16_t(gamepadData.data.lx-100));
-#ifdef MY_DEBUG1        
+#ifdef MY_DEBUG1  //debug options
         Serial.println(gamepadData.data.lx-100);
 #endif
     if(enforce_stop==0){ // cruise is off
