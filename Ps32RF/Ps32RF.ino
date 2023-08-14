@@ -50,7 +50,7 @@ void loop()
 
 void getPS3data(){
   if(Ps3.isConnected()){
-    if(abs(Ps3.data.analog.stick.lx)>24){ //make a deadzone for the controller and if the joystick is to the right remap the numbers from 24,128 to 101,200 and the same thing but negative for left
+    if(abs(Ps3.data.analog.stick.lx)>24){ //make a deadzone for the controller and if the joystick is to the right remap the numbers from 24,128 to 101,200 and the same thing but negative for left     
       if(Ps3.data.analog.stick.lx>0){
         pad.data.lx=map(Ps3.data.analog.stick.lx, 25, 128, 101,200);
       }else{
