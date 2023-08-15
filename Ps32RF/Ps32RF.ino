@@ -25,11 +25,11 @@ void loop()
   if(millis()-cur_bk>100){  // every 100 seconds run the code below
     if(Ps3.isConnected()){
       getPS3data();   //get the ps3 controller data and put it into the buffer
-      uint8_t chkSum=0;
+      uint8_t checkSum=0;
       for(int i=0; i<FRAME_DATA_SIZE; i++){ // take all of the objects currently in the buffer and add them all to make a checksum 
-        chkSum+=pad.buf[2+i];
+        checkSum+=pad.buf[2+i];
       }
-      pad.data.chk_sum=chkSum; // make the checksum being transmitted the same as the one found aboce
+      pad.data.chk_sum=checkSum; // make the checksum being transmitted the same as the one found aboce
       #ifdef DEBUG2
         Serial.print("["); 
         for(int i=0; i<FRAME_DATA_SIZE+3; i++){ //if DEBUG2 has been declared then print out everything in the gamepad buffer

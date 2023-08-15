@@ -60,8 +60,8 @@ void loop() {
     }
     Serial.println("");
     */
-    if(frm_buf_len > sizeof(GamepadData)){ // 읽어들인 data의 길이가 너무 크면 싹 reset 시켜버림.
-      b_frm_start=false;                   // if the length of the data recieved reset everything
+    if(frm_buf_len > sizeof(GamepadData)){ // if the length of the data recieved reset everything
+      b_frm_start=false;                   
       frm_buf_len=0;
     }
     
@@ -97,9 +97,10 @@ void loop() {
       b_frm_start=false;
       frm_buf_len=0;
     } // end of chksum process
-  } // end of channel_A 수신 처리(RF Transiver) receiver
+  } // end of channel_A process the reception (RF Transiver) receiver
 
-  // RF module을 통해 수신된 frame처리.
+
+  // through the RF module recieve the frame
   if(b_rcvFrm){
 #ifdef MY_DEBUG //made for debugging if MY_DEBUG IS defined then go into the the debugging
     Serial.printf("[%d, %d-%d] %d-%d, %d, spd:%d\n",
