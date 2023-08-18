@@ -15,7 +15,7 @@
  */
 class ServoESC {
 public:
-  ServoESC(void);
+  ServoESC(void); 
   void attach(uint8_t spin, uint8_t epin);
   boolean attached(){ return isAttached; };
   void SetServoMicros(int16_t a); // 1~100 speed를 servo pwm length(usec) 로 변환.

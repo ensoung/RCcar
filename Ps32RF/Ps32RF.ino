@@ -11,7 +11,7 @@ GamepadData pad;
 
 void setup()
 {
-    Serial.begin(115200);
+    Serial.begin(115200); 
     RF.begin(9600, SERIAL_8N1, 16, 17);
     Ps3.begin("12:34:56:78:9a:bc");
     Serial.println("Ready.");

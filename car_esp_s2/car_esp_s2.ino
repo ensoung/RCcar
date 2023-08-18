@@ -26,7 +26,6 @@ static ServoESC esc_servo;
 static unsigned long cur;
 static int enforce_stop;
 static unsigned long prev_frame;
-static uint8_t frm_num;
 
 void setup() {
   Serial.begin(115200);
@@ -149,7 +148,7 @@ void loop() {
 #endif
         // do it later
       }
-    }else{
+    }else{ 
       enforce_stop--; // need receive 5 continuous inputs for make enforce_stop 0.
     }
     b_rcvFrm=false;

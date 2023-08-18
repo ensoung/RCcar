@@ -34,7 +34,7 @@ void ServoESC::attach(uint8_t sPin, uint8_t ePin) {
   ledcSetup(SERVO_PWM_CH, 50, 12);  // 50hz, 12bit resolution=0~4095  1ms=205 1.5ms=308, 2ms=410
   ledcAttachPin(sPin, SERVO_PWM_CH);
 
-  ledcSetup(ESC_PWM_CH, 50, 12);
+  ledcSetup(ESC_PWM_CH, 50, 12);  // use the led pwm since it means we don't need to make a pwm manually
   ledcAttachPin(ePin, ESC_PWM_CH);
   
   isAttached = true;
@@ -70,7 +70,7 @@ void ServoESC::SetEscMicros(int16_t spd)
   speed_cur=spd;
 
   if(spd!=0)
-    Serial.println(spd);
+    Serial.println(spd); 
   if(spd>0){ // 1ms=205 1.5ms=308, 2ms=410
     micros_esc = map(spd, 0, 255, 308, 368); // R-Trigger 0~100
   }else if(spd<0){ // R-Trigger가 0일때만 후진임.(R-Trigger가 눌려있으면 RTrig(acel)-LTrig(brk_rev)('-'면 0)값이 speed임.

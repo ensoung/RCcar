@@ -106,7 +106,7 @@ public:
     }
     
     bool isConnected()
-    {
+    { 
       Wire.beginTransmission(_AS5600Address);
       return ( Wire.endTransmission() == 0);
     }
