@@ -16,7 +16,7 @@ void setup()
     Ps3.begin("12:34:56:78:9a:bc");
     Serial.println("Ready.");
 
-    pad.data.frame_start=0xffff;
+    pad.data.frame_start=0xffff;                            
 }
 
 uint32_t cur_bk;

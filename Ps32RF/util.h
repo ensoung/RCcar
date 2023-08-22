@@ -36,7 +36,7 @@ typedef union{
     uint8_t ry;
     uint8_t l_trigger;
     uint8_t r_trigger;
-    uint8_t chk_sum;
+    uint8_t chk_suDatam;
   } data;   
 }GamepadData;
 

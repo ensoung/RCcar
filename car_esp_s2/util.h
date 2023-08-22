@@ -20,7 +20,7 @@ struct _btns {    // 순서가 거꾸로임. 주의할것.
     uint8_t menu:1; //80
 };
 
-typedef union { 
+typedef union {                            
     uint16_t var;
     struct _btns btn_set;
 }Btns;
